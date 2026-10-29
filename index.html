@@ -504,7 +504,7 @@ footer a{text-decoration:none;color:var(--gold-hi)}
       <div class="months rv" id="months" aria-hidden="true">
         <div style="--i:0">Jan</div><div style="--i:1">Fev</div><div style="--i:2">Mar</div><div style="--i:3">Abr</div><div style="--i:4">Mai</div><div style="--i:5">Jun</div><div style="--i:6">Jul</div><div style="--i:7">Ago</div><div style="--i:8">Set</div><div style="--i:9">Out</div><div style="--i:10">Nov</div><div style="--i:11">Dez</div>
       </div>
-      <p class="months-cap rv">Doze meses de cuidado.</p>
+      <p class="months-cap rv">Doze meses de cuidado, sem pressa.</p>
     </div>
   </section>
 
@@ -752,6 +752,7 @@ footer a{text-decoration:none;color:var(--gold-hi)}
     function api(metodo, rota, dados){
       return fetch("https://api.github.com/repos/" + repo + rota, {
         method: metodo,
+        cache: "no-store",   /* sem isso o navegador devolve o "main" de até 60 s atrás e o GitHub recusa (422) */
         headers: {"Authorization": "Bearer " + token, "Accept": "application/vnd.github+json", "Content-Type": "application/json"},
         body: dados ? JSON.stringify(dados) : undefined
       }).then(function(r){
